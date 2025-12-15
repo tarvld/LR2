@@ -1,45 +1,64 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "CommonFunctions.h"
-#include <Windows.h>
-#include <locale>
 
-struct ConsoleSetup {
-    ConsoleSetup() {
-        SetConsoleCP(1251);
-        SetConsoleOutputCP(1251);
-        setlocale(LC_ALL, "Russian");
-    }
-};
-
-//Начальная а заменяется на аа
-
-TEST_CASE("program1.2", "[unit]") {
-    char str[100] = "абв";
+TEST_CASE("program1.1") {
+    char str[100] = "abc";
     program1(str);
-    REQUIRE(strcmp(str, "аАбв") == 0);
+    REQUIRE(strcmp(str, "aabc") == 0);
 }
 
-// а перед согласной заменяется на А
-
-TEST_CASE("program1.3", "[unit]") {
-    char str[100] = "мабв";
+TEST_CASE("program1.2") {
+    char str[100] = "macb";
     program1(str);
-    REQUIRE(strcmp(str, "мАбв") == 0);
+    REQUIRE(strcmp(str, "macb") == 0);
 }
 
-// а в конце не меняется
-
-TEST_CASE("program1.4", "[unit]") {
-    char str[100] = "абва";
+TEST_CASE("program1.3") {
+    char str[100] = "abca";
     program1(str);
-    REQUIRE(strcmp(str, "аАбва") == 0);
+    REQUIRE(strcmp(str, "aabca") == 0);
 }
 
-//а перед гласной не заменяется на А
-
-TEST_CASE("program1.5", "[unit]") {
-    char str[100] = "нонао";
+TEST_CASE("program1.4") {
+    char str[100] = "nonae";
     program1(str);
-    REQUIRE(strcmp(str, "нонао") == 0);
+    REQUIRE(strcmp(str, "nonae") == 0);
+}
+
+TEST_CASE("program1.5") {
+    char str[100] = "test";
+    program1(str);
+    REQUIRE(strcmp(str, "test") == 0);
+}
+//
+
+TEST_CASE("program2.1") {
+    char* result = program2("abc");
+    REQUIRE(strcmp(result, "aAbc") == 0);
+    free(result);
+}
+
+TEST_CASE("program2.2 ") {
+    char* result = program2("macb");
+    REQUIRE(strcmp(result, "mAcb") == 0);
+    free(result);
+}
+
+TEST_CASE("program2.3") {
+    char* result = program2("abca");
+    REQUIRE(strcmp(result, "aAbca") == 0);
+    free(result);
+}
+
+TEST_CASE("program2.4") {
+    char* result = program2("nonae");
+    REQUIRE(strcmp(result, "nonae") == 0);
+    free(result);
+}
+
+TEST_CASE("program2.5") {
+    char* result = program2("test");
+    REQUIRE(strcmp(result, "test") == 0);
+    free(result);
 }

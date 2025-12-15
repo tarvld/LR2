@@ -3,7 +3,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <fstream>
-#include <Windows.h>
 #include "CommonFunctions.h"
 
 using namespace std;
@@ -12,7 +11,7 @@ void program3() {
     const char* inputFile = "input.txt";
     const char* outputFile = "output.txt";
 
-    cout << "Введите строку: ";
+    cout << "Enter string: ";
 
     int capacity = 2;
     char* str = (char*)malloc(capacity * sizeof(char));
@@ -44,7 +43,7 @@ void program3() {
 
     ifstream inFile(inputFile);
     if (!inFile) {
-        cout << "Ошибка открытия файла!" << endl;
+        cout << "Error opening file!" << endl;
         free(fileStr);
         return;
     }
@@ -68,8 +67,8 @@ void program3() {
     resultFile << fileStr;
     resultFile.close();
 
-    cout << "Результат: " << fileStr << endl;
-    cout << "Записан в файл: " << outputFile << endl;
+    cout << "Result: " << fileStr << endl;
+    cout << "Saved to file: " << outputFile << endl;
 
     free(fileStr);
 }
